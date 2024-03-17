@@ -3,21 +3,21 @@
 namespace App\Services\AnyApiClient;
 
 use App\Services\AnyApiClient\Dto\AnyApiDto;
-use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Support\Facades\Http;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class AnyApiClient
 {
-    private string $uri;
     private string $apiKey;
+
+    private string $baseUrl;
+    private string $ratesUrl;
 
     public function __construct(private AnyApiResponseFactory $anyApiResponseFactory)
     {
-        $this->uri = 'https://anyapi.io/api/v1/exchange/rates';
-        $this->apiKey = 'vkruc29ccuogqr2qpq1j9ofucas21im4p518co6ouc7di8u6rtv18';
+        $this->baseUrl = config('anyapi.base_url');
+        $this->ratesUrl = config('anyapi.rates_url');
+        $this->apiKey = config('anyapi.api_key');
     }
 
     /**
@@ -26,7 +26,7 @@ class AnyApiClient
      */
     public function get(): AnyApiDto
     {
-        $response = Http::get($this->uri, ['apiKey' => $this->apiKey])->throwIfServerError();
+        $response = Http::get($this->baseUrl . $this->ratesUrl, ['apiKey' => $this->apiKey])->throwIfServerError();
 
         return $this->anyApiResponseFactory->fromString($response->getBody()->getContents());
     }

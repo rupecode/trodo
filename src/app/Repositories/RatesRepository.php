@@ -33,7 +33,8 @@ class RatesRepository
         $data = Rate::query()
             ->select([
                 DB::raw(
-                    'MIN(rates.rate) AS minimum,
+                    'MAX(rate.lastUpdate) AS lastUpdate,
+                    MIN(rates.rate) AS minimum,
                     MAX(rates.rate) AS maximum,
                     AVG(rates.rate) AS average'
                 )

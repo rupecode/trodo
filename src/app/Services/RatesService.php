@@ -55,7 +55,7 @@ class RatesService
         return (new PaginatedFactory())->create(
             $res['total'],
             new CurrenciesResponseDto(
-                $this->dateFormatter->fromUnixTimeToDate($data[0]['lastUpdate']),
+                $this->dateFormatter->fromUnixTimeToDate($stats['lastUpdate']),
                 $this->moneyFormatter->format($stats['minimum']),
                 $this->moneyFormatter->format($stats['maximum']),
                 $data[0]['currency'],
