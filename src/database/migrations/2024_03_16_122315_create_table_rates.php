@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('ratesId')->references('id')->on('rate')->onDelete('cascade');
             $table->char('currency', 3)->index();
             $table->float('rate');
+            $table->index(['rate']);
         });
     }
 

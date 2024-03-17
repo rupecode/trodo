@@ -24,7 +24,8 @@ const ItemList = (props) => {
             <table className="table">
                 <thead className="font-weight-bold bg-light">
                     <tr>
-                        <td onClick={() => onDateSort(handleDateSort)} className="pointer"><span className={"sort-" + dateSort}></span>Date</td>
+                        <td onClick={() => onDateSort(handleDateSort)} className="pointer">Date<span
+                            className={"sort-" + dateSort}></span></td>
                         <td>EUR to {currency}</td>
                     </tr>
                 </thead>

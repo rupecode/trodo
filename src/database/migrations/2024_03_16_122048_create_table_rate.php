@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('rate', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('lastUpdate', false, true)->index();
+            $table->integer('lastUpdate', false, true)->unique();
             $table->char('baseCurrency', 3)->index();
         });
     }
