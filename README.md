@@ -20,7 +20,7 @@ Three additional containers are included that handle Composer, NPM, and Artisan 
 - `docker-compose run --rm npm run dev`
 - `docker-compose run --rm artisan migrate`
 
-### Frontend development
+## Frontend development
 
 Path to build `./front/build`
 
