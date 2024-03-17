@@ -28,6 +28,23 @@ class RatesRepository
         return ['total' => $count[0]->total, 'data' => $data->toArray()];
     }
 
+    public function getStats(Currency $currency): array
+    {
+        $data = Rate::query()
+            ->select([
+                DB::raw(
+                    'MIN(rates.rate) AS minimum,
+                    MAX(rates.rate) AS maximum,
+                    AVG(rates.rate) AS average'
+                )
+            ])
+            ->where('rates.currency', '=', $currency->name)
+            ->join('rates', 'rate.id', '=', 'rates.ratesId')
+            ->get();
+
+        return $data->toArray()[0];
+    }
+
     /**
      * @param AnyApiDto $dto
      * @return int

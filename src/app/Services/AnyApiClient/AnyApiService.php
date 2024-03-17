@@ -8,7 +8,6 @@ class AnyApiService
 {
     public function __construct(private AnyApiClient $anyApiClient, private RatesRepository $ratesRepository)
     {
-
     }
 
     public function store(): int

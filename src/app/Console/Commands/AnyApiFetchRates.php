@@ -26,10 +26,14 @@ class AnyApiFetchRates extends Command
      */
     public function handle()
     {
-        /** @var AnyApiService $service */
-        $service = app(AnyApiService::class);
-        $id = $service->store();
+        try {
+            /** @var AnyApiService $service */
+            $service = app(AnyApiService::class);
+            $id = $service->store();
 
-        $this->info("New rates with id {$id} stored in database.");
+            $this->info("New rates with id {$id} stored in database.");
+        } catch (\Throwable $t) {
+            $this->error($t->getMessage());
+        }
     }
 }

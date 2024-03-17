@@ -28,12 +28,6 @@ class AnyApiClient
     {
         $response = Http::get($this->uri, ['apiKey' => $this->apiKey])->throwIfServerError();
 
-        /*$response = $this->client->request('GET', $this->uri . '?apiKey=' . $this->apiKey);
-
-        if ($response->getStatusCode() !== 200) {
-            throw new BadRequestHttpException('Anyapi request filed', null, $response->getStatusCode());
-        }*/
-
         return $this->anyApiResponseFactory->fromString($response->getBody()->getContents());
     }
 }

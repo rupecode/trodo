@@ -6,15 +6,19 @@ use App\Dto\CurrenciesResponseDto;
 use App\Dto\RateResponseDto;
 use App\Enums\Currency;
 use App\Enums\Sort;
+use App\Factories\DateFormatter;
+use App\Factories\MoneyFormatter;
 use App\Factories\PaginatedFactory;
 use App\Repositories\RatesRepository;
-use Illuminate\Support\Facades\DB;
 
 class RatesService
 {
-    public function __construct(private RatesRepository $ratesRepository)
+    public function __construct(
+        private RatesRepository $ratesRepository,
+        private MoneyFormatter $moneyFormatter,
+        private DateFormatter $dateFormatter
+    )
     {
-
     }
 
     public function rates(int $page, Currency $currency, Sort $sort): array
@@ -39,17 +43,23 @@ class RatesService
         $rates = [];
 
         foreach ($data as $item) {
-            $rates[] = new RateResponseDto($item['id'], $item['lastUpdate'], $item['rate']);
+            $rates[] = new RateResponseDto(
+                $item['id'],
+                $this->dateFormatter->fromUnixTimeToDate($item['lastUpdate']),
+                $this->moneyFormatter->format($item['rate'])
+            );
         }
+
+        $stats = $this->ratesRepository->getStats($currency);
 
         return (new PaginatedFactory())->create(
             $res['total'],
             new CurrenciesResponseDto(
-                $data[0]['lastUpdate'],
-                0.97504,
-                1.1103,
+                $this->dateFormatter->fromUnixTimeToDate($data[0]['lastUpdate']),
+                $this->moneyFormatter->format($stats['minimum']),
+                $this->moneyFormatter->format($stats['maximum']),
                 $data[0]['currency'],
-                1.0587,
+                $this->moneyFormatter->format($stats['average']),
                 $rates
             )
         );
