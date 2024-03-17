@@ -48,6 +48,7 @@ class RatesRepository
 
     /**
      * @param AnyApiDto $dto
+     * @param array $allowedCurrencies
      * @return int
      * @throws \Throwable
      */
