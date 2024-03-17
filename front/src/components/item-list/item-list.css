@@ -1,0 +1,13 @@
+.sort-ASC:after {
+    padding: 0 3px 0 3px;
+    content: "↓";
+}
+
+.sort-DESC:after {
+    padding: 0 3px 0 3px;
+    content: "↑";
+}
+
+.pointer {
+    cursor: pointer;
+}

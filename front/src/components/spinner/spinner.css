@@ -1,0 +1,46 @@
+@keyframes ldio-x9zr0dl6sr {
+    0% {
+        top: 56.64px;
+        left: 56.64px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        top: 10.62px;
+        left: 10.62px;
+        width: 92.03999999999999px;
+        height: 92.03999999999999px;
+        opacity: 0;
+    }
+}.ldio-x9zr0dl6sr div {
+     position: absolute;
+     border-width: 2.36px;
+     border-style: solid;
+     opacity: 1;
+     border-radius: 50%;
+     animation: ldio-x9zr0dl6sr 1.8518518518518516s cubic-bezier(0,0.2,0.8,1) infinite;
+ }.ldio-x9zr0dl6sr div:nth-child(1) {
+      border-color: #1d3f72;
+      animation-delay: 0s;
+  }
+.ldio-x9zr0dl6sr div:nth-child(2) {
+    border-color: #5699d2;
+    animation-delay: -0.9259259259259258s;
+}
+.loadingio-spinner-ripple-zjmo9uy04o {
+    width: 118px;
+    height: 118px;
+    display: inline-block;
+    overflow: hidden;
+    background: none;
+}
+.ldio-x9zr0dl6sr {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateZ(0) scale(1);
+    backface-visibility: hidden;
+    transform-origin: 0 0; /* see note above */
+}
+.ldio-x9zr0dl6sr div { box-sizing: content-box; }
