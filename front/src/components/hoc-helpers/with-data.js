@@ -3,6 +3,7 @@ import Spinner from "../spinner";
 import ErrorIndicator from "../error-indicator";
 import ReactPaginate from "react-paginate";
 import "./react-paginate.css";
+import "./style.css";
 
 const withData = (View) => {
     return class extends Component {
@@ -78,7 +79,7 @@ const withData = (View) => {
             return (
                 <>
                     <h3>1 EUR to {this.props.currency} Exchange Rate</h3>
-                    <span>Last updated: {data.data.lastUpdated}</span>
+                    <div className="last-updated">Last updated: {data.data.lastUpdated}</div>
 
                     <ReactPaginate
                         className="react-paginate"
