@@ -51,7 +51,7 @@ class RatesRepository
      * @return int
      * @throws \Throwable
      */
-    public function save(AnyApiDto $dto): int
+    public function save(AnyApiDto $dto, array $allowedCurrencies): int
     {
         try {
             DB::beginTransaction();
@@ -71,6 +71,10 @@ class RatesRepository
             $rate->refresh();
 
             foreach ($dto->rates as $item) {
+                if (!in_array($item->currency, $allowedCurrencies)) {
+                    continue;
+                }
+
                 $rates = new Rates();
                 $rates->ratesId = $rate->id;
                 $rates->currency = $item->currency;
