@@ -30,25 +30,6 @@ Start the dev server
 Want to build for production? Simply run: 
 - `docker-compose run --rm npm run build`
 
-## Permissions Issues
-
-If you encounter any issues with filesystem permissions while visiting your application or running a container command, try completing one of the sets of steps below.
-
-**If you are using your server or local environment as the root user:**
-
-- Bring any container(s) down with `docker-compose down`
-- Replace any instance of `php.dockerfile` in the docker-compose.yml file with `php.root.dockerfile`
-- Re-build the containers by running `docker-compose build --no-cache`
-
-**If you are using your server or local environment as a user that is not root:**
-
-- Bring any container(s) down with `docker-compose down`
-- In your terminal, run `export UID=$(id -u)` and then `export GID=$(id -g)`
-- If you see any errors about readonly variables from the above step, you can ignore them and continue
-- Re-build the containers by running `docker-compose build --no-cache`
-
-Then, either bring back up your container network or re-run the command you were trying before, and see if that fixes it.
-
 ## Persistent MySQL Storage
 
 By default, whenever you bring down the Docker network, your MySQL data will be removed after the containers are destroyed. If you would like to have persistent data that remains after bringing containers down and back up, do the following:
